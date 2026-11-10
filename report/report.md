@@ -17,13 +17,21 @@
 
 ## 本地评测证据
 
-运行命令：`python3 test/overall_test.py`。下图逐字渲染该次终端原始输出，包含所有 case、状态和分数。**由于桌面工具禁止访问 Terminal，图片为原始日志渲染图，不是原生终端窗口截屏**；未删改或重排评测数据。完整文本保存在 `report/evidence/overall-20261110.txt`。
+下图为通过本机 ttyd 真实终端连接既有 QEMU 后，分别运行 `python3 test/csim_test.py` 和 `python3 test/gemm_test.py` 所得的窗口截屏，包含所有 case、状态和分数。仅裁去终端右侧及底部空白，未修改评测内容；两个进程退出码均为 0。另已串行运行 `python3 test/overall_test.py` 复核，完整文本保存在 `report/evidence/pre-submission-audit-20261110.txt`。
 
-![Part B：完整官方输出（原始日志渲染）](img/part-b.png){width=100%}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,trim=0bp 290bp 265bp 0bp,clip]{img/part-b.jpg}
+\caption{Part B：完整官方输出（真实终端截图）}
+\end{figure}
 
 \newpage
 
-![Part A：完整 20 组官方输出（原始日志渲染）](img/part-a.png){width=100%}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,trim=0bp 0bp 265bp 0bp,clip]{img/part-a.jpg}
+\caption{Part A：完整 20 组官方输出（真实终端截图）}
+\end{figure}
 
 Part A 的各行 hits / misses / evictions 均与官方参考程序一致。编译的基本合法性检查、矩阵结果、输入保持不变和寄存器上限检查也均通过。最终代码只改变 `csim.c` 和 `gemm.cpp`；Makefile、框架、基准、参考程序和官方测试文件保持原样。
 
@@ -116,18 +124,17 @@ A、B 各 64 条 cache line，相隔 64 条，映射到相同的 32 个组；交
 
 ### 缺失分析的复现
 
-上文分矩阵的 cache miss 是对最终 trace 的独立逐条回放，非未经验证的解析公式。下面代码完整复现计数，只需要把 `case` 改为 1、2、3。输出三个 `[访问数, 缺失数]`，依次为 A、B、C；相加应与官方总数一致。
+先在仓库根目录执行注释中的 Shell 命令生成三个 trace，再将下面代码保存为 `replay.py`，设置 `case` 为 1、2、3 后运行 `python3 replay.py`。输出依次为 A、B、C 的 `[访问数, 缺失数]`；这是 trace 回放计数，而非解析公式。
 
 ```python
-# 先执行：make && ./printTrace case3 > case3.trace
+# Shell: make printTrace && for c in 1 2 3; do ./printTrace case$c > case$c.trace; done
 case = 3
 m, n, p = {1:(16,16,16), 2:(32,32,32), 3:(27,41,27)}[case]
 bounds = [m*n, m*n+n*p, m*n+n*p+m*p]
 tags, result = [None]*32, [[0,0] for _ in range(3)]
 with open(f"case{case}.trace") as trace:
     for line in trace:
-        word = (int(line.split()[1].split(',')[0], 16)
-                - 0x30000000) // 4
+        word = (int(line.split()[1].split(',')[0], 16) - 0x30000000) // 4
         owner = next(i for i, end in enumerate(bounds) if word < end)
         block, index = word // 4, (word // 4) % 32
         result[owner][0] += 1

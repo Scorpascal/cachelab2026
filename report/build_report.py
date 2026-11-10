@@ -10,6 +10,7 @@ import argparse
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 
 
@@ -30,9 +31,15 @@ def main():
             "-V", "documentclass=article", "--syntax-highlighting=tango",
         ], check=True)
         for _ in range(2):
-            subprocess.run(["xelatex", "-interaction=nonstopmode", "-halt-on-error",
-                            "report.tex"], cwd=build, check=True,
-                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            try:
+                subprocess.run(["xelatex", "-interaction=nonstopmode", "-halt-on-error",
+                                "report.tex"], cwd=build, check=True,
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            except subprocess.CalledProcessError as error:
+                print(error.stdout.decode(errors="replace"), file=sys.stderr)
+                raise SystemExit(
+                    f"PDF build failed; {args.output} was not updated."
+                ) from error
         args.output.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(build / "report.pdf", args.output)
         print(args.output.resolve())

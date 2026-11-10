@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-10",
+  "template_base": "b1e6b29cc5968c5adc95661210b747507ffbeb38",
+  "pdf_pages": 5,
+  "reviewed": [
+    "required template sections",
+    "complete Part A header, 20 cases and score without overlay",
+    "complete Part B cases and score",
+    "source and PDF consistency",
+    "Songti/Heiti/Menlo fonts embedded",
+    "QEMU reproduction commands for all three cases",
+    "private submission identity and public anonymization",
+    "exact three-file submission package",
+    "official framework unchanged"
+  ],
+  "course_platform_submitted": false,
+  "course_total_grade": "unverified; human review pending",
+  "sha256": {
+    "csim.c": "de4845193d98a90f1d70922e51a734edcad85bf37fc7e8da2f796296361972fc",
+    "gemm.cpp": "9450674edda33e7d5091115894c2f4677839b8510310142b81bd173c35e484d2",
+    "report/report.md": "1fc1cfe11231cf8d7302ca47d4d9c2546f32f62b6ea8558ca3430e2fd2bd037a",
+    "report/report.pdf": "6e2f7bc90599721c8edd8fa9dc8a55904f1df9b449e3b013dd6a765ef2493685",
+    "report/img/part-a.jpg": "55d6a39c59d0f3080101c6051428c467f11fb5f6ecdee2f572b0175cd4ac39a0",
+    "report/img/part-b.jpg": "ffd6deefd79f34e20e3d93f237cda93b28cd5b74011746a4fe6376c1b4bac4b0"
+  }
+}

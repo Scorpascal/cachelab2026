@@ -1,0 +1,10 @@
+make: 'printTrace' is up to date.
+Pass using 36 regs
+Pass using 28 regs
+Pass using 36 regs
+case1 report replay:
+[[1024, 164], [768, 192], [256, 64]]
+case2 report replay:
+[[8192, 820], [8192, 2048], [1024, 256]]
+case3 report replay:
+[[5535, 1605], [7749, 2826], [729, 282]]

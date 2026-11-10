@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-10",
+  "terminal": "ttyd 1.7.7 / xterm.js, loopback-only, read-only; SSH PTY into existing QEMU",
+  "environment": "Ubuntu 24.04 x86-64",
+  "commands": [
+    "python3 test/csim_test.py",
+    "python3 test/gemm_test.py"
+  ],
+  "exit_status": [
+    0,
+    0
+  ],
+  "capture": "Original browser viewport screenshots; PDF layout crops empty right/bottom space without modifying image files",
+  "part_a_cases": "20/20",
+  "part_a_score": 100,
+  "weighted_speedup": 8.617570753250124,
+  "part_b_performance_score": 100,
+  "framework": "unchanged",
+  "sha256": {
+    "csim.c": "de4845193d98a90f1d70922e51a734edcad85bf37fc7e8da2f796296361972fc",
+    "gemm.cpp": "9450674edda33e7d5091115894c2f4677839b8510310142b81bd173c35e484d2",
+    "report/img/part-a.jpg": "55d6a39c59d0f3080101c6051428c467f11fb5f6ecdee2f572b0175cd4ac39a0",
+    "report/img/part-b.jpg": "ffd6deefd79f34e20e3d93f237cda93b28cd5b74011746a4fe6376c1b4bac4b0",
+    "report/evidence/pre-submission-audit-20261110.txt": "1e0912f2e4270c9c4489ed1e1499ecf5920c793028d70e890a2567a6981c1795"
+  },
+  "course_platform_submitted": false,
+  "course_total_score": "unverified; report and style require human grading"
+}
