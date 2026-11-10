@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-10",
+  "environment": "QEMU Ubuntu 24.04.5 x86-64, GCC 13.3.0",
+  "official_base": "b1e6b29cc5968c5adc95661210b747507ffbeb38",
+  "part_a_passed": 20,
+  "part_a_total": 20,
+  "part_b_weighted_speedup": 8.617570753250124,
+  "part_b_score_percent": 100,
+  "course_platform_submitted": false,
+  "modified_original_files": [
+    "csim.c",
+    "gemm.cpp",
+    "report/report.md"
+  ],
+  "sha256": {
+    "csim.c": "de4845193d98a90f1d70922e51a734edcad85bf37fc7e8da2f796296361972fc",
+    "gemm.cpp": "9450674edda33e7d5091115894c2f4677839b8510310142b81bd173c35e484d2",
+    "Makefile": "6dea6e4cd05a826bee980d3f3b98c2ddcbeaab37efc8afc5ea1fe87a92c6de83",
+    "common.h": "208f3a1207b6237048d3f94d39004847160e5b7ab197b89f04134851f8b8a022",
+    "csim-ref": "9f572e3dcb2ab97404cebee2abe331bac9372c6850c1210b42a6461ca4a09590",
+    "test/overall_test.py": "02ce2633276728c0a0ac99f7edccb5f77dec6fe7157a45284217092a76d8ffea"
+  }
+}
